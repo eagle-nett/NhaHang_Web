@@ -1,0 +1,59 @@
+﻿@model IEnumerable<NhaHang_Web.Models.DONHANG>
+
+@{
+    ViewBag.Title = "DanhSachDH";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<hr />
+<h2 style="color: blue; text-align: center; font-weight: bold">DANH SÁCH ĐƠN HÀNG</h2>
+<section>
+    <div class="card">
+
+        <div class="card-body">
+            @*<div class="card-header bg-secondary text-center text-white mt-3">
+                    <h3 class="card-title bg-secondary text-center text-white">DANH SÁCH ĐƠN HÀNG</h3>
+                </div>*@
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã đơn hàng</th>
+                        <th>Mã khách hàng</th>
+                        <th>Ngày đặt hàng</th>
+                        <th>Ngày giao hàng</th>
+                        <th>Tình trạng thanh toán</th>
+                        <th>Tình trạng giao hàng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        var i = 0;
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@(i + 1)</td>
+                                <td>@item.MADH</td>
+                                <td>@item.MAKH</td>
+                                <td>@(item.NGAYDATHANG.HasValue ? item.NGAYDATHANG.Value.ToString("dd/MM/yyyy") : "")</td>
+                                <td>@(item.NGAYGIAOHANG.HasValue ? item.NGAYGIAOHANG.Value.ToString("dd/MM/yyyy") : "")</td>
+                                <td>@item.TINHTRANGTHANHTOAN</td>
+                                <td>@(item.TINHTRANGGIAOHANG==0?"Chờ giao hàng":"Đã giao hàng")</td>
+                                <td>
+                                    <a href="@Url.Action("XemChiTietDonHang", new { @maDH = item.MADH })" class="btn btn-success">Xem</a>
+                                    <a href="@Url.Action("XoaDonHang", new { @id = item.MADH })" class="btn btn-danger">Xóa</a>
+                                    <a href="@Url.Action("SuaDonHang", new { @id = item.MADH })" class="btn btn-success">Sửa</a>
+                                </td>
+
+                            </tr>
+
+                            i++;
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>

@@ -1,0 +1,106 @@
+﻿@model NhaHang_Web.Models.DatBanModel
+
+@{
+    ViewBag.Title = "ThongTinDB";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+
+<h2 class="text-center text-uppercase fw-bold pt-5">Báo Cáo Đặt Bàn</h2>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+            <p><strong>Ngày:</strong> @DateTime.Now.ToShortDateString()</p>
+            <p><strong>Giờ:</strong> @DateTime.Now.ToShortTimeString()</p>
+            <p><strong>Nhà hàng:</strong> Cơm quê</p>
+            <p><strong>Địa chỉ: </strong> 140 Lê Trọng Tấn, Tây Thạnh, Tân Phú, TP. Hồ Chí Minh</p>
+            <p><strong>Hotline: </strong> 0325 258 123</p>
+            <p><strong>Email: </strong> cskh@comque.vn</p>
+        </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+            <p><strong>Họ tên:</strong> @Model.HoTen</p>
+            <p><strong>Số điện thoại:</strong> @Model.SoDienThoai</p>
+            <p><strong>Ngày đặt:</strong> @Model.NgayDat.ToShortDateString()</p>
+            <p><strong>Giờ đặt:</strong> @Model.GioDat.ToShortTimeString()</p>
+            <p><strong>Tên bàn:</strong> @Model.TenBan</p>
+            <p><strong>Số người:</strong> @Model.SoLuongKhach</p>
+        </div>
+    </div>
+
+</div>
+
+<div class="container">
+    <table class="table text-center table-striped">
+        <thead class="thead-dark">
+            <tr>
+                @*<th valign="middle" style="vertical-align: middle">Mã Món Ăn</th>*@
+                <th valign="middle" style="vertical-align: middle">STT</th>
+                <th valign="middle" style="vertical-align: middle">Tên Món Ăn</th>
+                <th valign="middle" style="vertical-align: middle">Hình ảnh</th>
+                <th valign="middle" style="vertical-align: middle">Giá</th>
+                <th valign="middle" style="vertical-align: middle">Số Lượng</th>
+                <th valign="middle" style="vertical-align: middle">Thành Tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int tongTien = 0; // Khởi tạo biến tổng tiền
+                int i = 1;
+                foreach (var monAn in Model.DanhSachMonAn)
+                {
+                    <tr>
+                        @*<td valign="middle" style="vertical-align: middle">@monAn.MaMonAn</td>*@
+                        <td valign="middle" style="vertical-align: middle">@i</td>
+                        <td valign="middle" style="vertical-align: middle">@monAn.TenMonAn</td>
+                        <td valign="middle" style="vertical-align: middle"><img src="~/ImageMenu/@monAn.HinhAnh" alt="Alternate Text" class="img-thumbnail" style="max-width: 100px; max-height: 100px;" /></td>
+                        <td valign="middle" style="vertical-align: middle">@monAn.Gia</td>
+                        <td valign="middle" style="vertical-align: middle">@monAn.SoLuong</td>
+                        <td valign="middle" style="vertical-align: middle">@monAn.ThanhTien</td>
+                    </tr>
+                    tongTien += monAn.ThanhTien;
+                    i++;
+                }
+            }
+
+            <tr>
+                <td colspan="5">
+                    <h2 class="fw-bold text-end">Tổng Tiền:</h2>
+                </td>
+                <td>
+                    <h2 class="fw-bold" style="color:red">@tongTien.ToString("C")</h2>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="success-message" class="alert alert-success text-center" style="display: none;">
+        Vui lòng kiểm tra lại thông tin và thanh toán cho chúng tôi để hoàn tất đặt bàn!
+    </div>
+    <div class="text-center">
+        <a href="@Url.Action("ThanhToan", "DatBan")" class="btn btn-success btn-lg">Thanh Toán</a>
+    </div>
+</div>
+
+
+<!-- Thêm đoạn mã sau vào cuối file HTML -->
+
+
+<script>
+    // Hiển thị thông báo sau khi tải trang
+    window.onload = function () {
+        showSuccessMessage();
+    };
+
+    // Hàm hiển thị thông báo
+    function showSuccessMessage() {
+        var messageDiv = document.getElementById('success-message');
+        if (messageDiv) {
+            messageDiv.style.display = 'block';
+        }
+    }
+</script>
+
+

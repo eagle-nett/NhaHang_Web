@@ -1,0 +1,79 @@
+﻿
+
+@{
+    ViewBag.Title = "MenuLoaiMonAn";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <h1 class="display-3 mb-3 animated slideInDown">Menu</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a class="text-body" href="~/Home/Home">Trang chủ</a></li>
+                <li class="breadcrumb-item text-dark active" aria-current="page">Menu</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+
+
+<div class="container-xxl py-5">
+    <div class="container">
+        <h2 class="text-body" style="text-align: center">DANH SÁCH CÁC LOẠI MÓN ĂN</h2>
+        <hr />
+        <ul class="nav nav-pills d-inline-flex justify-content-end mb-5" style="justify-content: center">
+            @{ var falg = true;}
+            @foreach (var item in Model)
+            {
+                <li class="nav-item me-2" style="justify-content: center">
+                    <a class="btn btn-outline-primary border-2 @(falg ? "active" : "")" href="@Url.Action("MenuTheoLoai","Menu", new {@malma = item.MALOAI })">
+                        @item.TENLOAI
+                    </a>
+                </li>
+                falg = false;
+            }
+        </ul>
+    </div>
+    <div class="container">
+        <div class="col-12">
+            <div class="col-4">
+                <form class="d-flex flex-row align-items-center" method="post" action="/Menu/MenuSearch">
+                    <input class="form-control m-2" type="search" placeholder="Tìm kiếm" id="txt_search" name="txt_search" value="@ViewBag.Search" />
+                    <input type="submit" value="Search" class="btn btn-primary mx-2" />
+                </form>
+            </div>
+            <div class="col-8">
+                @using (Html.BeginForm("XemSanPhamTheoLoc", "Menu", FormMethod.Get))
+                {
+                    <div class="col-3">
+                        <label for="giaMin">Giá Min: <span><input type="number" id="giaMin" name="giaMin"></span></label>
+                    </div>
+
+                    <div class="col-3">
+                        <label for="giaMin">Giá Max: <span><input type="number" id="giaMax" name="giaMax"></span></label>
+                    </div>
+                    <br />
+                    <div class="col-6">
+                        @Html.DropDownList("sapXep", new SelectList(new[]
+                        {
+                            new SelectListItem { Text = "Tăng dần theo tên", Value = "ASC_MON" },
+                            new SelectListItem { Text = "Giảm dần theo tên", Value = "DESC_MON" },
+                            new SelectListItem { Text = "Tăng dần theo giá", Value = "ASC_GIA" },
+                            new SelectListItem { Text = "Giảm dần theo giá", Value = "DESC_GIA" }
+                        }, "Value", "Text", ViewBag.SapXep))
+                        <input type="submit" value="Sắp xếp" class="btn btn-outline-warning" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h2 class="text-body" style="text-align: center">DANH SÁCH TẤT CẢ MÓN ĂN</h2>
+        <hr />
+        @Html.Action("MenuTatCaCacLoai", "Menu")
+    </div>
+</div>
+

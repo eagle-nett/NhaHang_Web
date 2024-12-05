@@ -1,0 +1,100 @@
+﻿@model NhaHang_Web.Models.KHACHHANG
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="~/Content/SignUp.css" rel="stylesheet" />
+
+<div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a class="text-body" href="~/Home/Home">Trang chủ</a></li>
+                <li class="breadcrumb-item text-dark active" aria-current="page">Đăng ký</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+@{ var falg = true;}
+<div id="tab-1" class="tab-pane fade show p-0 @(falg ? "active" : "")">
+
+    <div class="container">
+        
+        <div class="card bg-light">
+            <h4 class="card bg-secondary card-header text-center clearfix text-white">ĐĂNG KÝ TÀI KHOẢN</h4>
+            <article class="card-body mx-auto" style="max-width: 400px;">
+
+                @*<h4 class="card-title mt-3 text-center">Đăng ký tài khoản</h4>
+            <p class="text-center">Get started with your free account</p>
+            <p>
+                <a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>   Login with Twitter</a>
+                <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login with facebook</a>
+            </p>
+            <p class="divider-text">
+                <span class="bg-light">OR</span>
+            </p>*@
+                @using (Html.BeginForm("DangKy", "Account", FormMethod.Post))
+                {
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input name="TENKH" class="form-control" placeholder="Tên hiển thị" type="text" value="@((Model?.TENKH) ?? null)">
+                    </div> <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fas fa-calendar-day"></i> </span>
+                        </div>
+                        <input name="NGAYSINH" class="form-control" placeholder="Ngày sinh" type="text" value="@((Model?.NGAYSINH) ?? null)">
+                    </div> <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                        </div>
+                        <select class="custom-select" style="max-width: 80px;">
+                            <option selected="">+84</option>
+
+                        </select>
+                        <input name="SDT" class="form-control" placeholder="Số điện thoại" type="text" value="@((Model?.SDT) ?? null)">
+                    </div> <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fas fa-globe-asia"></i> </span>
+                        </div>
+                        <input name="DIACHI" class="form-control" placeholder="Địa chỉ" type="text" value="@((Model?.DIACHI) ?? null)">
+                    </div> <!-- form-group end.// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input name="TAIKHOAN" class="form-control" placeholder="Tên đăng nhập" type="text" value="@((Model?.TAIKHOAN) ?? null)">
+                    </div> <!-- form-group end.// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input name="MATKHAU" class="form-control" placeholder="Mật khẩu" type="text" value="@((Model?.MATKHAU) ?? null)">
+                    </div> <!-- form-group// -->
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Đăng ký  </button>
+                    </div> <!-- form-group// -->
+                    <p class="text-center">Bạn đã có tài khoản? <a href="@Url.Action("DangNhap", "Account")">Đăng nhập</a> </p>
+
+
+
+
+                }
+
+            </article>
+        </div> <!-- card.// -->
+
+    </div>
+</div>

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<NhaHang_Web.Models.SapXepMenu_Result>
+
+@{
+    ViewBag.Title = "XemSanPhamTheoLoc";
+
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<!-- Page Header Start -->
+<div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <h1 class="display-3 mb-3 animated slideInDown">MENU SẮP XẾP</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a class="text-body" href="~/Home/Home">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a class="text-body" href="~/Menu/MenuLoaiMonAn">Menu</a></li>
+                <li class="breadcrumb-item text-dark active" aria-current="page">Sắp xếp món ăn</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<div class="container">
+    <div class="container-fluid">
+
+        <div id="tab-1" class="tab-pane fade show p-0 )">
+            <div class="row g-4">
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="product-item">
+                            <div class="position-relative bg-light overflow-hidden">
+                                <img class="img-fluid w-100 h-100" src="~/ImageMenu/@item.HINHANH">
+                                <div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">New</div>
+                            </div>
+                            <div class="text-center p-4">
+                                @if (item.TENMONAN.Length > 18)
+                                {
+                                    <a class="d-block h5 mb-2" href="">@item.TENMONAN.Substring(0, 18)....</a>
+                                    <span class="text-primary me-1">@String.Format("{0:0,0}", item.GIA)VNĐ</span>
+                                }
+                                else
+                                {
+                                    <a class="d-block h5 mb-2" href="">@item.TENMONAN</a>
+                                    <span class="text-primary me-1">@String.Format("{0:0,0}", item.GIA)VNĐ</span>
+                                }
+                            </div>
+                            <div class="d-flex border-top">
+                                <small class="w-50 text-center border-end py-2">
+                                    <a class="text-body" href="@Url.Action("XemChiTiet", new { @ms = item.MALOAI })">
+                                        <i class="fa fa-eye text-primary me-2"></i>Xem chi tiết
+                                    </a>
+                                </small>
+                                <small class="w-50 text-center py-2">
+                                    <a class="text-body" href="@Url.Action("ThemGioHang", "GioHang", new { @mamonan = @item.MAMONAN, @strURL = Request.Url.ToString() })"><i class="fa fa-shopping-bag text-primary me-2"></i>Thêm giỏ hàng</a>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

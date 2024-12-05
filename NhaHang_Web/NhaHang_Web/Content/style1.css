@@ -1,0 +1,250 @@
+@charset "utf-8";
+/* CSS Document */
+#main{
+	width: 100%;
+	background-color:pink;
+}
+#header{
+	text-align: center;
+	width: 100%;
+}
+#chunen{
+	position: absolute;
+	top: 180px;
+	left: 38%;
+	width: 340px;
+	height: 80px;
+	border: 1px solid #C0C0C0;
+	border-radius: 10px;
+	background-image: url(../images/nenchu.jpg);
+}
+#chunen span{
+	color: #32FF00;
+	font-size: 70px;
+	margin: auto;
+}
+#header img{
+	width: 100%;
+	height: 600px;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+#content{
+	margin: auto;
+	width: 86%;
+}
+#content-GT{
+	width: 100%;
+	margin-top: 30px;
+	background-color:#B0D4B8;
+	border-radius: 10px;
+	padding: 15px;
+}
+#content-GT p{
+	font-size: 22px;
+	color: black;
+}
+
+#aoHCM{
+	width: 100%;
+	height: 600px;
+	border-radius: 10px;
+	padding: 15px;
+	margin-bottom: 30px;
+	background-image: url(../images/depHCM.jpg);
+	background-size: 100% 120%;
+}
+#aoHCM h2{
+	color:steelblue;
+	margin-bottom: 0px;
+	font-style:oblique;
+	font-size: 35px;
+	font: bold;
+}
+#aoHCM p{
+	color:black;
+	font-style:oblique;
+	font-size: 25px;
+	
+}
+.botron{
+	background-color:rgb(235, 255, 255);
+	float: left;
+	width: 17%;
+	height: 420px;
+	margin-left: 25px;
+	padding: 10px;
+	border: 1px solid rgb(138, 125, 125);
+	border-top-left-radius: 150px;
+	border-top-right-radius: 150px;
+	border-bottom-left-radius: 150px;
+	border-bottom-right-radius: 150px;
+	margin-top: 30px;
+	margin-right: -100px;
+}
+.botron p{
+	font-size: 17px;
+}
+
+.botron img{
+	border-top-left-radius: 150px;
+	border-top-right-radius: 150px;
+	border-bottom-left-radius: 30px;
+	border-bottom-right-radius: 30px;
+	padding: 2px;
+	width: 100%;
+	height: 200px;
+}
+.botron h5{
+	margin-top: 0px;
+	text-align: center;
+	padding-left: 10%;
+	padding-right: 10%;
+	font-size: 16px;
+}
+.botron h3{
+	text-align: center;
+	color: aquamarine;
+	font-size: 22px;
+	margin-bottom: 0px;
+}
+.botron a{
+	text-decoration: none;
+	color:#00C52F;
+}
+.botron a:hover{
+	color: coral;
+}
+.content-vuichoi{
+	width: 100%;
+	height: 430px;
+	margin-bottom: 30px;
+	border-left: 5px solid #000000;
+	border-bottom: 5px solid #000000;
+	margin-top: 60px;
+}
+.content-vuichoi h2{
+	margin-bottom: 0px;
+}
+.content-vuichoi p{
+	font-size: 22px;
+}
+.vuichoi{
+	float: left;
+	width: 19%;
+	height: 200px;
+	margin-left: 1%;
+}
+.vuichoi img{
+	border-radius: 10px;
+	width: 95%;
+	height: 200px;
+}
+.vuichoi a{
+	text-decoration: none;
+	color: black;
+}
+.vuichoi a:hover{
+	color:crimson;
+}
+.vuichoi p:hover{
+	transform: scale(1,1.1);
+}
+.vuichoi p{
+	font-size: 20px;
+	font-weight: bold;
+}
+.vuichoi h4{
+	margin-top: -15px;
+	color: darkcyan;
+}
+.vuichoi h3{
+	margin-top: -15px;
+	color:#938E8E;
+	font-size: 17px;
+	text-decoration: line-through;
+}
+.vuichoi img:hover{
+	transform:scale(1.1);
+}
+#content-chu{
+	width: 100%;
+	margin: auto;
+	border-radius: 10px;
+	background-color:rgb(151, 169, 193);
+	padding: 25px;
+	float: left;
+}
+#content-chu h2{
+	padding-top: 30px;
+	font-size: 25px;
+}
+#content-chu h3{
+	font-style: oblique;
+	font-size: 22px;
+}
+#content-chu p{
+	font-size: 20px;
+}
+.botron:hover
+{
+	transform:scale(1.1);
+}
+#tieude{
+	position: relative;
+	top: -30px;
+	left: 5px;
+	width: 46%;
+	height: 100px;
+	border: 1px solid #7ab7a0;
+	border-radius: 15px;
+	background-image:url(../images/nenchu.jpg);
+	padding-left: 20px;
+	margin-top: 5px;
+}
+#tieude h2{
+	margin-bottom: 0px;
+	margin-top: 15px;
+	color: darkgreen;;
+}
+#tieude p{
+	margin-top: 0px;
+	color: rgb(211, 114, 10);
+}
+.td-td{
+	
+	position: relative;
+	top: -10px;
+	left: 5px;
+	width: 40%;
+	height: 100px;
+	border: 1px solid #C0C0C0;
+	border-top-right-radius: 300px;
+	background-image:url(../images/nenchu.jpg);
+	padding-left: 20px;
+	margin-top: 5px;
+	margin-left: -10px;
+}
+.td-td h2{
+	padding-left: 20px;
+	margin-top: 15px;
+	color: orangered;
+}
+.td-td p{
+	padding-left: 20px;
+	color:rgb(165, 102, 7);
+}
+#content-chu div{
+	float :right;
+}
+
+.slider{
+	width: 100%;
+	height: auto;
+	display: inline-flexbox;
+	overflow-x: auto;
+}
+.slide{
+	width: 100%;
+	flex-shrink: 0;
+	height: 100%; }

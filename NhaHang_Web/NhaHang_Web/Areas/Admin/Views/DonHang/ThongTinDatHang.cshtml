@@ -1,0 +1,63 @@
+﻿@model NhaHang_Web.Models.ThongTinDonHang
+
+
+<section>
+    <div class="card pt-5">
+        <div class="card-header text-left">
+            <h5 class="fw-bold">THÔNG TIN</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Mã đơn hàng</label>
+                        <p class="form-control">@Model.MADH</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Tên khách hàng</label>
+                        <p class="form-control">@Model.TENKHACHHANG</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Số điện thoại</label>
+                        <p class="form-control">@Model.SDT</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Ngày đặt hàng</label>
+                        <p class="form-control">@Model.NGAYDATHANG.ToString("dd/MM/yyyy")</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Ngày giao hàng</label>
+                        <p class="form-control">@Model.NGAYGIAOHANG.ToString("dd/MM/yyyy")</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Tình trạng thanh toán</label>
+                        <p class="form-control">@Model.TINHTRANGTHANHTOAN</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Tình trạng giao hàng</label>
+                        <p class="form-control">@(Model.TINHTRANGGIAOHANG == 0?"Chờ giao hàng":"Đã giao hàng")</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

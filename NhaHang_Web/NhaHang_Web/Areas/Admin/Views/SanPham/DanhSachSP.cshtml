@@ -1,0 +1,44 @@
+﻿@model IEnumerable<NhaHang_Web.Models.MONAN>
+
+@{
+    ViewBag.Title = "DanhSachSP";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+<hr />
+<h2 style="color: blue; text-align: center; font-weight: bold">DANH SÁCH MENU</h2>
+
+<button class="btn btn-info"> <a href=""><input class="checkbox-inline" type="checkbox" value="Chọn tất cả" /></a></button>
+<button class="btn btn-primary"> <a href=""><i style="color: white" class="fa-solid fa-trash"></i></a></button>
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th></th>
+            <th>MÃ MÓN</th>
+            <th>TÊN MÓN</th>
+            <th>GIÁ</th>
+            <th>MÔ TẢ</th>
+            <th>HÌNH ẢNH</th>
+            <th>MÃ LOẠI</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td width="3%"><input class="checkbox-inline" type="checkbox" value="" /></td>
+            <td width="10%">@item.MAMONAN</td>
+            <td width="15%">@item.TENMONAN</td>
+            <td style="color: red" width="12%">@String.Format("{0:0,0}", item.GIA)VNĐ</td>
+            <td width="25%">@item.MOTA</td>
+            <td width="12%"><img src="~/ImageMenu/@item.HINHANH" width="100px"; />  </td>
+            <td width="8%">@item.MALOAI</td>
+            <td width="15%">
+                <button class="btn btn-warning"> <a href="~/Admin/SanPham/CreateSP"><i style="color: white" class="fa-solid fa-plus"></i></a></button>
+                <button class="btn btn-danger"> <a href=""><i style="color: white" class="fa-solid fa-pen-to-square"></i></a></button>
+                <button class="btn btn-success"> <a href=""><i style="color: white" class="fa-solid fa-trash-can"></i></a></button>
+                
+            </td>
+        </tr>
+    }
+</table>

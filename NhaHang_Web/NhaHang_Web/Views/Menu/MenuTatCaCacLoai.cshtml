@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "MenuTatCaCacLoai";
+}
+@using NhaHang_Web.Models
+@model List<MONAN>
+
+@{ var falg = true;}
+<div id="tab-1" class="tab-pane fade show p-0 @(falg ? "active" : "")">
+    <div class="row g-4">
+
+        @foreach (var item in Model)
+        {
+            <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="product-item">
+                    <div class="position-relative bg-light overflow-hidden">
+                        <img class="img-fluid w-100 h-100" src="~/ImageMenu/@item.HINHANH">
+                        <div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">New</div>
+                    </div>
+                    <div class="text-center p-4">
+                        @if (item.TENMONAN.Length > 18)
+                        {
+                            <a class="d-block h5 mb-2" href="">@item.TENMONAN.Substring(0, 18)....</a>
+                            <span class="text-primary me-1">@String.Format("{0:0,0}", item.GIA)VNĐ</span>
+                        }
+                        else
+                        {
+                            <a class="d-block h5 mb-2" href="">@item.TENMONAN</a>
+                            <span class="text-primary me-1">@String.Format("{0:0,0}", item.GIA)VNĐ</span>
+                        }
+                    </div>
+                    <div class="d-flex border-top">
+                        <small class="w-50 text-center border-end py-2">
+                            <a class="text-body" href="@Url.Action("XemChiTiet", new { @ms = item.MALOAI })">
+                                <i class="fa fa-eye text-primary me-2"></i>Xem chi tiết
+                            </a>
+                        </small>
+                        <small class="w-50 text-center py-2">
+                            <a class="text-body" href="@Url.Action("ThemGioHang", "GioHang", new { @mamonan = @item.MAMONAN, @strURL = Request.Url.ToString() })"><i class="fa fa-shopping-bag text-primary me-2"></i>Thêm giỏ hàng</a>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<hr />
+<div class="col-12">
+    <div class="pagination justify-content-center">
+        @for (int i = 0; i < ViewBag.NoOfPage; i++)
+        {
+            <div class="page-item">
+                <a class="page-link" style="font-size:1em" href="~/Menu/MenuLoaiMonAn/MenuTatCaCacLoai?page=@(i+1)">
+                    @(i+1)
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+

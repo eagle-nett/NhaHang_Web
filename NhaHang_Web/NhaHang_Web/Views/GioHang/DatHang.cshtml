@@ -1,0 +1,153 @@
+﻿@using NhaHang_Web.Models
+@model List<GioHang>
+@{
+    ViewBag.Title = "DatHang";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+
+<div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <h1 class="display-3 mb-3 animated slideInDown">Menu</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a class="text-body" href="~/Home/Home">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a class="text-body" href="~/Menu/MenuLoaiMonAn">Menu</a></li>
+                <li class="breadcrumb-item text-dark active" aria-current="page">Menu Theo Loại</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+@{ var falg = true;}
+<div id="tab-1" class="tab-pane fade show p-0 @(falg ? "active" : "")">
+
+    <div class="container-fluid px-3 my-5 clearfix">
+         
+        <div class="card">
+            <div class="card-header text-center">
+                <h2>ĐƠN HÀNG</h2>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered m-0">
+                        <thead>
+                            <tr>
+
+                                <th class="text-center py-3 px-0" style="min-width: 5px;">STT</th>
+                                <th class="text-center py-3 px-4" style="min-width: 195px;">Tên món</th>
+                                <th class="text-center py-3 px-2" style="min-width: 100px;">Hình ảnh</th>
+                                <th class="text-right py-3 px-4" style="width: 100px;">Giá</th>
+                                <th class="text-center py-3 px-4" style="width: 120px;">Số lượng</th>
+                                <th class="text-right py-3 px-4" style="width: 150px;">Thành tiền</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int i = 1;
+                            }
+
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    <td class="text-center font-weight-semibold align-middle px-0">@i</td>
+                                    <td class="text-right font-weight-semibold align-middle p-4">@item.Tenmonan</td>
+                                    <td class="p-4 text-center align-middle">
+                                        <div class="media align-items-center">
+                                            <img src="~/ImageMenu/@item.Anhbia" class="d-block ui-w-40 ui-bordered mr-2 align-middle text-center" alt="" style="width: 100px;">
+                                        </div>
+                                    </td>
+
+                                    <td class="text-right font-weight-semibold align-middle p-4">@String.Format("{0:0,0}", item.Dongia)</td>
+                                    <td class="align-middle p-4"><input type="number" class="form-control text-center" value="@item.SoLuong" name="txtSoLuong" min="1" readonly></td>
+                                    <td class="text-right font-weight-semibold align-middle p-4">@String.Format("{0:0,0}", item.Thanhtien)</td>
+
+
+
+                                </tr>
+                                i++;
+                            }
+
+                        </tbody>
+                        <tr class="table-borderless float-right">
+                            <td class="text-right font-weight-semibold align-middle p-4 float-right" colspan="6">
+                                <h5 class="float-right text-right">Tổng tiền: <strong style="color: red;" class="text-right">@String.Format("{0:0,0}", ViewBag.TongThanhTien)</strong> VNĐ</h5>
+                            </td>
+                        </tr>
+
+
+
+                    </table>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+@{
+    KHACHHANG kh = (KHACHHANG)Session["TaiKhoan"];
+}
+
+<div class="container-fluid px-3 my-5 clearfix">
+
+    <div class="card">
+        <div class="card-header text-center">
+            <h2>THÔNG TIN ĐẶT HÀNG</h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered m-0">
+
+                    @using (Html.BeginForm())
+                    {
+                        <tr>
+                            <td>Họ và tên khách hàng: </td>
+                            <td style="font-weight: bold">@kh.TENKH</td>
+                        </tr>
+                        <tr>
+                            <td>Địa chỉ khách hàng: </td>
+                            <td style="font-weight: bold">@kh.DIACHI</td>
+                        </tr>
+                        <tr>
+                            <td>Điện thoại: </td>
+                            <td style="font-weight: bold">@kh.SDT</td>
+                        </tr>
+                        <tr>
+                            <td>Ngày đặt: </td>
+                            <td style="font-weight: bold">@DateTime.Now.ToShortDateString()</td>
+                        </tr>
+                        <tr>
+                            <td>Ngày giao hàng: </td>
+                            <td style="font-weight: bold">
+                                <input type="date" name="NgayGiao" />
+                            </td>
+                        </tr>
+                        <tr>
+                            
+                            <td colspan="2" class="text-center">
+                                
+                                    <input type="submit" value="ĐỒNG Ý ĐẶT HÀNG" class="text-center align-middle btn btn-success"/>
+                              
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
+

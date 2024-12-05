@@ -1,0 +1,827 @@
+/* LINK FONT IN GG FONT */
+/* @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,700;1,600&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,700;1,600&family=Rubik+Puddles&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap');
+/* Định dạng màu sắc để gọi lại thống nhất */
+:root {
+    --grey: #aaadab;
+    --black: black;
+    --light-color: #666;
+    --box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
+    --color-text: rgb(0, 67, 89);
+}
+
+/* CSS */
+* {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: all .2s linear;
+}
+
+.search_header {
+    width: 120px;
+    height: 45px;
+    border-radius: 100px;
+    border: 0px;
+
+}
+
+html {
+    font-size: 63%;
+    scroll-padding-top: 5.5rem;
+    scroll-behavior: smooth;
+}
+
+section {
+    padding: 2rem 9%;
+}
+
+section:nth-child(even) {
+    background: #ffffff;
+}
+
+/* ------------------------------------------ */
+/* HEADER */
+header {
+    width: 100%;
+    height: auto;
+    padding: 1rem 7%;
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 0;
+    right: 0;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    background-color: rgb(251, 225, 190);
+}
+
+header .logo_main {
+    text-decoration: none;
+    color: var(--color-text);
+    font-size: 3rem;
+    font-weight: bold;
+    font-family: 'Rubik Vinyl', cursive;
+    
+}
+
+header .logo_main i {
+    color: var(--color-text);
+}
+
+header .navbar_main a {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    border-radius: .5rem;
+    padding: .5rem 1.5rem;
+    color: var(--light-color);
+    text-decoration: none;
+    position: relative;
+
+}
+
+header .navbar_main a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    width: 0;
+    height: 2.5px;
+    transition: all 0.5s ease;
+}
+
+header .navbar_main a:hover::before {
+    background: linear-gradient(45deg, #f30000, #3cf);
+    /* -webkit-text-fill-color: transparent; */
+    width: 100%;
+}
+
+header .icons_main i,
+header .icons_main a {
+    cursor: pointer;
+    margin-left: .5rem;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    width: 4.5rem;
+    text-align: center;
+    font-size: 2rem;
+    color: var(--black);
+    border-radius: 50%;
+    background: #ffffff;
+}
+
+header .icons_main i:hover,
+header .icons_main a:hover {
+    color: #ffffff;
+    background: linear-gradient(45deg, #f30000, #3cf);
+    transform: rotate(360deg);
+}
+
+header .icons_main #menu_bars {
+    display: none;
+}
+
+.navbar_main_bars a {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    border-radius: .5rem;
+    padding: .5rem 1.5rem;
+    color: var(--light-color);
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    position: relative;
+    width: 100%;
+}
+
+.navbar_main_bars {
+    margin-top: 30px;
+}
+
+.navbar_main_bars a::before {
+    content: ' ';
+    background-color: black;
+    position: absolute;
+    width: 0;
+    height: 2.5px;
+    bottom: 0;
+    left: 0;
+
+    transition: all 0.5s ease;
+}
+
+.navbar_main_bars a:hover::before {
+    background: linear-gradient(45deg, #f30000, #3cf);
+    -webkit-text-fill-color: transparent;
+    width: 100%;
+}
+
+/* ------------------------------------------------------- */
+/* SEARCH */
+#search_form {
+    position: fixed;
+    top: -110%;
+    /* Vị trí ban đầu của search from*/
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1004;
+    background: rgba(0, 0, 0, .8);
+    /* giảm opacity màu đen*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* opacity: 0.4; */
+    padding: 0 1rem;
+}
+
+#search_form.active {
+    top: 0;
+}
+
+#search_form #close:hover {
+    background: #f30000;
+    border-radius: 1rem;
+    opacity: 1;
+}
+
+#search_form #search_box {
+    width: 45rem;
+    border-right: 0;
+    border-bottom: .1rem solid #fff;
+    padding: 1rem 0;
+    color: #fff;
+    font-size: 3rem;
+    text-transform: none;
+    background: none;
+}
+
+#search_form #search_box::placeholder {
+    color: #fff;
+    font-weight: 300;
+}
+
+#search_form #search_box::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    /* sử dụng chorme để tối ưu webkit*/
+}
+
+#search_form label {
+    color: #fff;
+    cursor: pointer;
+    font-size: 3rem;
+    margin-left: 2rem;
+}
+
+#search_form label:hover {
+    color: var(--color-text);
+}
+
+#search_form #close {
+    position: absolute;
+    color: #fff;
+    cursor: pointer;
+    top: 10rem;
+    right: 10rem;
+    font-size: 5rem;
+}
+
+
+/* SECTION */
+.home_main .home_slider .slide {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-top: 9rem;
+}
+
+.home .home_slider .slide .slide_content {
+    flex: 1 1 45rem;
+}
+
+.home .home_slider .slide .img_slide {
+    flex: 1 1 45rem;
+}
+
+.home .home_slider .slide .img_slide img {
+    width: 100%;
+}
+
+.home .home_slider .slide .slide_content span {
+    color: var(--color-text);
+    font-size: 2.5rem;
+}
+
+.home .home_slider .slide .slide_content h3 {
+    color: var(--black);
+    font-size: 2.5rem;
+}
+
+/* CSS để tạo kiểu cho footer */
+footer {
+    background-color: var(--color-text);
+    padding: 20px;
+    text-align: left;
+    color: aliceblue;
+    margin-top: 20px;
+}
+
+footer p {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+footer span {
+    font-size: 13px;
+}
+
+footer span:hover {
+    color: red;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+footer .row_2 span {
+    border-top: 2px black;
+}
+
+footer .text_copyright {
+    float: right;
+    font-size: 13px;
+}
+
+footer .logo_footer {
+    font-size: 70px;
+    display: inline-block;
+}
+
+footer .logo_text_footer {
+    font-family: 'Rubik Vinyl', cursive;
+    font-size: 70px;
+    font-weight: bold;
+    display: inline-block;
+}
+.box_logo_footer{
+    width: 100%;
+    height: auto;
+    margin-top: 3em;
+}
+
+/*  */
+footer ul {
+    position: relative;
+    display: flex;
+    gap: 25px;
+
+}
+
+footer ul li {
+    position: relative;
+    list-style: none;
+    background: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 60px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: 0.5s;
+}
+
+footer ul li:hover {
+    width: 180px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0);
+    ;
+}
+
+footer ul li::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50px;
+    background: linear-gradient(45deg, var(--i), var(--j));
+    opacity: 0;
+    transition: 0.5s;
+}
+
+footer ul li:hover::before {
+    opacity: 1;
+}
+
+footer ul li::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    height: 100%;
+    border-radius: 60px;
+    background: linear-gradient(45deg, var(--i), var(--j));
+    opacity: 0;
+    transition: 0.5s;
+    z-index: -1;
+    filter: blur(15px);
+}
+
+footer ul li:hover::after {
+    opacity: 0.5;
+}
+
+footer ul li i {
+    color: #777;
+    font-size: 1.75rem !important;
+    transition: 0.5s;
+    transition-delay: 0.25s;
+}
+
+footer ul li:hover i {
+    transform: scale(0);
+    font-size: 1.75rem;
+    transition-delay: 0.25s;
+}
+
+footer ul li span {
+    position: absolute;
+}
+
+footer ul li .titulo {
+    color: #fff;
+    font-size: 1.1em !important;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    transform: scale(0);
+    transition: 0.5s;
+    transition-delay: 0s;
+}
+
+footer ul li:hover .titulo {
+    transform: scale(1);
+    transition-delay: 0.25s;
+}
+
+
+
+
+/* danh muc gio hang va muc yeu thich */
+/* cart_shop */
+
+.icon-container {
+    position: relative;
+    display: inline-block;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.list-container {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    display: none;
+    background-color: #ffffff;
+    padding: 8px;
+    border: 1px solid #004042;
+    box-shadow: #00bfb2 1px 2px 4px 1px;
+    border-radius: 4px;
+}
+
+.icon-container:hover .list-container {
+    display: block;
+}
+
+/* mang hình pc danh mục giỏ hàng sp */
+.box_shop_cart {
+    width: 30em;
+}
+
+.box_shop_heart {
+    width: 30em;
+}
+
+@media only screen and (max-width: 380px) {
+    .list-container {
+        right: -45px;
+    }
+}
+
+.cart_header_text_title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #00534a;
+}
+
+.cart_header_product_ip {
+    width: 100%;
+    height: auto;
+}
+
+.icon_close {
+    clear: none;
+}
+
+.btn_close {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-top: 20px;
+}
+
+.cart_header_product_name_ip h4 {
+    color: black;
+    font-weight: bold;
+}
+
+.cart_header_product_number_ip input {
+    width: 40px;
+    margin-top: 20px;
+    float: right;
+}
+
+.cart_header_product_buy_ip div {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.cart_header_product_buy_ip button {
+    border: none;
+    background-color: #fff;
+    color: #ffff;
+
+}
+
+.cart_header_product_buy_ip button a {
+
+    color: #ffff;
+    text-decoration: none;
+    padding: 4px 4px;
+
+
+}
+
+.icon_heart button {
+    border: none;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+
+
+/* chat box */
+
+#chatbox {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 300px;
+    height: 400px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+}
+
+#chat-messages {
+    height: 320px;
+    overflow-y: scroll;
+}
+
+#chat-input {
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+#message-input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+#send-button {
+    width: 100%;
+    padding: 8px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+.chat_box_icon {
+    float: right;
+}
+
+.chat_box_icon {
+    margin-left: 40px;
+    width: 50px;
+    height: 50px;
+    background-color: #003201;
+    border-radius: 50%;
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+}
+
+.chat_box_icon i {
+    align-items: center;
+    color: white;
+}
+
+/* chat box end */
+/* danh mục yêu thích */
+.con-like {
+    /* --red: rgb(253, 0, 0); */
+    color: black;
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+
+.con-like .like {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 20;
+    cursor: pointer;
+}
+
+.con-like .checkmark {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.con-like .outline,
+.con-like .filled {
+
+    fill: rgb(0, 0, 0);
+    position: absolute;
+}
+
+.con-like .filled {
+    animation: kfr-filled 0.5s;
+    display: none;
+}
+
+.con-like .celebrate {
+    position: absolute;
+    animation: kfr-celebrate 0.5s;
+    animation-fill-mode: forwards;
+    display: none;
+}
+
+.con-like .poly {
+    stroke: red;
+    fill: red;
+}
+
+.con-like .like:checked~.checkmark .filled {
+    display: block
+}
+
+.con-like .like:checked~.checkmark .celebrate {
+    display: block
+}
+
+@keyframes kfr-filled {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes kfr-celebrate {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+        display: none;
+    }
+}
+
+/* danh mục yêu thích end */
+/* THANH SEARCH */
+.group {
+    position: relative;
+}
+
+.input {
+    font-size: 16px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #515151;
+    background: transparent;
+}
+
+.input:focus {
+    outline: none;
+}
+
+label {
+    color: #999;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+.input:focus~label,
+.input:valid~label {
+    top: -20px;
+    font-size: 14px;
+    color: #5264AE;
+}
+
+.bar {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.bar:before,
+.bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: #5264AE;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+.bar:before {
+    left: 50%;
+}
+
+.bar:after {
+    right: 50%;
+}
+
+.input:focus~.bar:before,
+.input:focus~.bar:after {
+    width: 50%;
+}
+
+.highlight {
+    position: absolute;
+    height: 60%;
+    width: 100%;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.input:focus~.highlight {
+    animation: inputHighlighter 0.3s ease;
+}
+
+@keyframes inputHighlighter {
+    from {
+        background: #5264AE;
+    }
+
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+
+
+/* THANH SEARCH END */
+
+/* Truy vấn Media (media queries) */
+/* ///////////////////////////////////////////// */
+@media (max-width: 991px) {
+
+    html {
+        font-size: 55%;
+    }
+
+    header {
+        padding: 1rem 2rem;
+    }
+
+}
+
+/* Đến kích thước 768 hiện menu_bars */
+@media (max-width: 768px) {
+
+    header .icons_main #menu_bars {
+        display: inline-block;
+        float: right;
+    }
+
+    header .navbar_main a {
+        display: none;
+    }
+
+    #search_form #search_box {
+        width: 80%;
+        margin: 0 1rem;
+    }
+
+    .login_pc {
+        display: none;
+    }
+
+}
+
+@media (max-width: 991px) {
+
+    html {
+        font-size: 50%;
+    }
+}
+
+@media (max-width: 335px) {
+    .logo_main {
+        display: none;
+    }
+
+}
+
+@media (max-width: 774px) {
+    .search_header {
+        display: none;
+
+    }
+}

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<NhaHang_Web.Models.LOAIMONAN>
+
+@{
+    ViewBag.Title = "DanhMuc";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+<hr />
+<h2 style="color: blue; text-align: center; font-weight: bold">DANH SÁCH LOẠI MÓN ĂN</h2>
+
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th></th>
+            <th>MÃ LOẠI</th>
+            <th>TÊN LOẠI</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><input class="checkbox-inline" type="checkbox" value="" /></td>
+            <td>@item.MALOAI</td>
+            <td>@item.TENLOAI</td>
+            <td>
+                <button class="btn btn-warning"> <a href="~/Admin/DanhMuc/CreateCategory"><i style="color: white" class="fa-solid fa-plus"></i></a></button>
+                <button class="btn btn-danger"> <a href="~/Admin/DanhMuc/UpdateCategory?id=@item.MALOAI"><i style="color: white" class="fa-solid fa-pen-to-square"></i></a></button>
+            </td>
+        </tr>
+    }
+</table>
+
+<!-- Include jQuery if not already included -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.delete-btn').on('click', function () {
+            // Get the product ID from the data attribute
+            var productId = $(this).data('product-id');
+
+            // Send an Ajax request to delete the product
+            $.ajax({
+                url: '@Url.Action("Delete", "DanhMuc", new { area = "Admin" })',
+                type: 'POST',
+                data: { id: productId },
+                success: function (result) {
+                    if (result.success) {
+                        // Update the UI or perform other actions on success
+                        location.reload();
+                        alert(result.message);
+                    } else {
+                        // Handle errors or display a message
+                        alert(result.message);
+                    }
+                },
+                error: function () {
+                    // Handle Ajax errors
+                    alert('Error occurred during the Ajax request.');
+                }
+            });
+        });
+    });
+</script>

@@ -1,0 +1,82 @@
+﻿@model NhaHang_Web.Models.DONHANG
+
+@{
+    ViewBag.Title = "SuaDonHang";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<hr />
+<h2 style="color: blue; text-align: center; font-weight: bold">SỬA ĐƠN HÀNG</h2>
+<div class="card">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal card">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label text-left col-md-2" style="text-align: left;">Mã đơn hàng</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MADH, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MADH, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label text-left col-md-2" style="text-align: left;">Tên khách hàng</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.MAKH, null, "Chọn khách hàng", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MAKH, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label text-left col-md-2" style="text-align: left;">Ngày đặt</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.NGAYDATHANG, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker" })
+                    @Html.ValidationMessageFor(model => model.NGAYDATHANG, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="control-label text-left col-md-2" style="text-align: left;">Ngày giao</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.NGAYGIAOHANG, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker" })
+                    @Html.ValidationMessageFor(model => model.NGAYGIAOHANG, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label text-left col-md-2" style="text-align: left;">Thanh toán</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.TINHTRANGTHANHTOAN, new List<SelectListItem> {
+                           new SelectListItem {Text = "Đã thanh toán", Value = "Đã thanh toán",},
+                           new SelectListItem {Text = "Chờ thanh toán", Value = "Chờ thanh toán",}}, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TINHTRANGTHANHTOAN, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label text-left col-md-2" style="text-align: left;">Giao hàng</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.TINHTRANGGIAOHANG, new List<SelectListItem> {
+           new SelectListItem {Text = "Đã giao hàng", Value = "1",},
+           new SelectListItem {Text = "Chờ giao hàng", Value = "0",}}, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TINHTRANGTHANHTOAN, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10 text-center">
+                    <input type="submit" value="Lưu" class="btn btn-success text-center" style="text-align: center;" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        <a href="@Url.Action("DanhSachDH", "DonHang")" class="btn btn-primary">Trở về</a>
+    </div>
+</div>
+

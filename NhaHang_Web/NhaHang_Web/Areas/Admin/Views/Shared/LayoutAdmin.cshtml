@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ADMIN</title>
+    <link href="~/Areas/Admin/Conntet/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Conntet/css/metisMenu.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Conntet/css/timeline.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Conntet/css/startmin.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Conntet/css/morris.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Conntet/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">MT</a>
+            </div>
+
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <ul class="nav navbar-nav navbar-left navbar-top-links">
+                <li><a href="#"><i class="fa fa-home fa-fw"></i> Nhà hàng</a></li>
+            </ul>
+
+            <ul class="nav navbar-right navbar-top-links">
+                <li class="dropdown navbar-inverse">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-comment fa-fw"></i> Tin mới
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-twitter fa-fw"></i> Người theo dõi mới
+                                    <span class="pull-right text-muted small">12 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> Tin nhắn mới
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-tasks fa-fw"></i> Phản hồi mới
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-upload fa-fw"></i> Ảnh hưởng
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>Xem tất cả</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i>
+                        @{
+                            var user = (NhaHang_Web.Models.NHANVIEN)HttpContext.Current.Session["user"];
+                            <span>@user.TENNV</span>
+                        }
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="#"><i class="fa fa-user fa-fw"></i> Trang cá nhân</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-gear fa-fw"></i> Cài đặt</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="~/Admin/HomeAdmin/DangXuat"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- /.navbar-top-links -->
+            <!--Lõi chõ nào-->
+        </nav>
+
+        <aside class="sidebar navbar-default" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search">
+                        @**@
+
+                        @using (Html.BeginForm("XemSanPhamTheoLocAdmin", "SanPham", FormMethod.Get))
+                        {
+
+                            @*<div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search SP" id="txt_search" name="txt_search" value="@ViewBag.Search">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>*@
+
+
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search Product" name="txt_Search" id="txt_search" value="@ViewBag.Search" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        }
+
+                        <!-- /input-group -->
+                    </li>
+                    <li>
+                        <a href="index.html" class="active"><i class="fa fa-dashboard fa-fw"></i> TRANG CHỦ</a>
+                    </li>
+
+                    <li>
+                        <a href="tables.html"><i class="fa fa-table fa-fw"></i> QUẢN LÝ LOẠI MÓN ĂN<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="~/Admin/DanhMuc/DanhMuc"><span style="color: black;">DANH SÁCH LOẠI MÓN ĂN</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-wrench fa-fw"></i> QUẢN LÝ SẢN PHẨM<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="@Url.Action("XemSanPhamTheoLocAdmin","SanPham")"><span style="color: black;">DANH SÁCH SẢN PHẨM</span></a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-bell fa-fw"></i> QUẢN LÝ NHÂN VIÊN<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="~/Admin/NhanVien/DanhSachNhanVien"><span style="color: black;">DANH SÁCH NHÂN VIÊN</span></a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-sitemap fa-fw"></i> QUẢN LÝ KHÁCH HÀNG<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="#">KHÁCH HÀNG <span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="~/Admin/KhachHang/DanhSachKH"><span style="color: black;">DANH SÁCH KHÁCH HÀNG</span></a>
+                                    </li>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-third-level -->
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-files-o fa-fw"></i> QUẢN LÝ ĐƠN HÀNG<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="~/Admin/DonHang/DanhSachDH"><span style="color: black;">DANH SÁCH ĐƠN HÀNG</span></a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        <!-- /.sidebar -->
+
+        <div id="page-wrapper">
+            @RenderBody()
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    <script src="~/Areas/Admin/Conntet/js/jquery.min.js"></script>>
+
+    <script src="~/Areas/Admin/Conntet/js/bootstrap.min.js"></script>
+
+    <script src="~/Areas/Admin/Conntet/js/metisMenu.min.js"></script>
+
+    <script src="~/Areas/Admin/Conntet/js/raphael.min.js"></script>
+    <script src="~/Areas/Admin/Conntet/js/morris.min.js"></script>
+
+    <script src="~/Areas/Admin/Conntet/js/startmin.js"></script>
+
+</body>
+
+</html>

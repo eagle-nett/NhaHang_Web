@@ -1,0 +1,62 @@
+﻿@model IEnumerable<NhaHang_Web.Models.NHANVIEN>
+
+@{
+    ViewBag.Title = "DanhSachNhanVien";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<hr />
+<h2 style="color: blue; text-align: center; font-weight: bold">DANH SÁCH NHÂN VIÊN</h2>
+<a href="@Url.Action("ThemNhanVien", "NhanVien")" class="btn btn-primary mb-5" style="margin-bottom: 20px;">Thêm nhân viên mới</a>
+<section>
+    <div class="card">
+
+        <div class="card-body">
+            @*<div class="card-header bg-secondary text-center text-white mt-3">
+                    <h3 class="card-title bg-secondary text-center text-white">DANH SÁCH ĐƠN HÀNG</h3>
+                </div>*@
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã nhân viên</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Ngày sinh</th>
+                        <th>Địa chỉ</th>
+                        <th>Số điện thoại</th>
+                        <th>Mã loại nhân viên</th>
+                        <th>Chức vụ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        var i = 0;
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@(i + 1)</td>
+                                <td>@item.MANV</td>
+                                <td>@item.USERNAME</td>
+                                <td>@item.PASSWORD</td>
+                                <td>@(item.NGAYSINH.HasValue ? item.NGAYSINH.Value.ToString("dd/MM/yyyy") : "")</td>
+                                <td>@item.DIACHI</td>
+                                <td>@item.SDT</td>
+                                <td>@item.MALOAINV</td>
+                                <td>@item.CHUCVU</td>
+                                <td>
+                                    <a href="@Url.Action("XoaNhanVien", new { @id = item.MANV })" class="btn btn-danger">Xóa</a>
+                                    <a href="@Url.Action("SuaNhanVien", new { @id = item.MANV })" class="btn btn-success">Sửa</a>
+                                </td>
+                            </tr>
+
+                            i++;
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>

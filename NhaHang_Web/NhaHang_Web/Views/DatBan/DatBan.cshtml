@@ -1,0 +1,173 @@
+﻿@model NhaHang_Web.Models.DatBanModel
+
+@{
+    ViewBag.Title = "DatBan";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<style>
+    .quantity-input {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .quantity-btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 4px 8px;
+        cursor: pointer;
+    }
+
+        .quantity-btn:hover {
+            background-color: #0056b3;
+        }
+
+    .input-number {
+        text-align: center;
+        width: 30px;
+    }
+</style>
+<div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <h1 class="display-3 mb-3 animated slideInDown">ĐẶT BÀN</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a class="text-body" href="~/Home/Home">Trang chủ</a></li>
+                <li class="breadcrumb-item text-dark active" aria-current="page">Đặt bàn ăn</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<h2 class="text-center text-uppercase fw-bold pt-5">Đặt Bàn</h2>
+
+@using (Html.BeginForm("DatBan", "DatBan", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    <div class="container-fluid row">
+        <div class="col-sm-5">
+            <h3 class="text-center">Thông tin đặt bàn</h3>
+            <table class="table table-borderless">
+                <tr>
+                    <td valign="middle" style="vertical-align: middle" width="15%">Họ tên</td>
+                    <td class="form-group py-4">
+                        @Html.TextBoxFor(m => m.HoTen, new { @class = "form-control", placeholder = "Nhập Họ tên" })
+                        @Html.ValidationMessageFor(m => m.HoTen, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="middle" style="vertical-align: middle">Số điện thoại</td>
+                    <td class="form-group py-4">
+                        @Html.TextBoxFor(m => m.SoDienThoai, new { @class = "form-control", placeholder = "Nhập số điện thoại" })
+                        @Html.ValidationMessageFor(m => m.SoDienThoai, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="middle" style="vertical-align: middle">Ngày đặt</td>
+                    <td class="form-group py-4">
+                        <input type="date" name="NgayDat" value="" class="form-control" placeholder="Chọn ngày đặt" required />
+                        @Html.ValidationMessageFor(m => m.NgayDat, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="middle" style="vertical-align: middle">Giờ đặt</td>
+                    <td class="form-group py-4">
+                        <input type="time" name="GioDat" value="" class="form-control" required />
+                        @Html.ValidationMessageFor(m => m.GioDat, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td valign="middle" style="vertical-align: middle">Tên bàn</td>
+                    <td class="form-group py-4">
+                        @Html.DropDownListFor(m => m.TenBan, new SelectList(ViewBag.DanhSachBan, "TENBA", "TENBA"), "", new { @class = "form-select", required = "required" })
+                        @Html.ValidationMessageFor(m => m.TenBan, "", new { @class = "text-danger" })
+                    </td>
+
+                </tr>
+                <tr>
+                    <td valign="middle" style="vertical-align: middle">Số người</td>
+                    <td class="py-4">
+                        @Html.DropDownListFor(m => m.SoLuongKhach, new SelectList(new List<int> { 2, 4, 6, 8, 10 }), "-- Chọn số người --", new { @class = "form-select", required = "required" })
+                        @Html.ValidationMessageFor(m => m.SoLuongKhach, "", new { @class = "text-danger" })
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+        <div class="col-sm-7">
+            <h3 class="text-center">Danh sách món ăn</h3>
+
+            <div class="form-group" style="max-height: 500px; overflow-y: auto;">
+                <table class="table text-center">
+                    <thead class="sticky-top thead-dark" style="top: 0; background-color: #fff">
+                        <tr valign="middle" style="vertical-align: middle">
+                            @*<th>Mã Món Ăn</th>*@
+                            <th>Tên Món Ăn</th>
+                            <th>Hình ảnh</th>
+                            <th>Giá</th>
+                            <th>Số Lượng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.DanhSachMonAn.Count; i++)
+                        {
+                            <tr>
+                                @Html.HiddenFor(m => m.DanhSachMonAn[i].MaMonAn)
+                                <td valign="middle" style="vertical-align: middle">@Html.DisplayFor(m => m.DanhSachMonAn[i].TenMonAn)</td>
+                                <td valign="middle" style="vertical-align: middle">
+                                    <img src="~/ImageMenu/@Html.DisplayFor(m => m.DanhSachMonAn[i].HinhAnh)" alt="Alternate Text" class="img-thumbnail" style="max-width: 100px; max-height: 100px;" />
+                                </td>
+                                <td valign="middle" style="vertical-align: middle">@Html.DisplayFor(m => m.DanhSachMonAn[i].Gia)</td>
+
+                                <td valign="middle" style="vertical-align: middle">
+                                    <div class="quantity-input">
+                                        <button type="button" class="quantity-btn" onclick="decrementQuantity('@i')">-</button>
+                                        <input style="width: 50px" type="text" name="DanhSachMonAn[@i].SoLuong" value="0" class="form-control input-number" min="0" max="10" />
+                                        <button type="button" class="quantity-btn" onclick="incrementQuantity('@i')">+</button>
+                                    </div>
+                                </td>
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="form-group text-center">
+        @Html.ValidationSummary(true)
+        <input type="submit" value="Đặt Bàn" class="btn btn-success w-25 mx-auto" />
+    </div>
+}
+
+<script>
+    function incrementQuantity(index) {
+        var input = $("input[name='DanhSachMonAn[" + index + "].SoLuong']");
+        var currentVal = parseInt(input.val());
+
+        if (!isNaN(currentVal) && currentVal < parseInt(input.attr('max'))) {
+            input.val(currentVal + 1);
+        } else {
+            input.val(input.attr('max'));
+        }
+    }
+
+    function decrementQuantity(index) {
+        var input = $("input[name='DanhSachMonAn[" + index + "].SoLuong']");
+        var currentVal = parseInt(input.val());
+
+        if (!isNaN(currentVal) && currentVal > parseInt(input.attr('min'))) {
+            input.val(currentVal - 1);
+        } else {
+            input.val(input.attr('min'));
+        }
+    }
+
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+

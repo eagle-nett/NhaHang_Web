@@ -1,0 +1,57 @@
+﻿@model IEnumerable<NhaHang_Web.Models.XemChiTietDonHang>
+
+@{
+    ViewBag.Title = "XemChiTietDonHang";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<hr />
+<h2 style="color: blue; text-align: center; font-weight: bold">CHI TIẾT ĐƠN HÀNG</h2>
+<div class="container-fluid px-3 my-5 clearfix">
+    @Html.Action("ThongTinDatHang", "DonHang")
+    <div class="card">
+        <div class="card-header text-left">
+            <h5 class="fw-bold">SẢN PHẨM</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered m-0">
+                    <thead>
+                        <tr>
+
+                            <th class="text-center py-3 px-0" style="min-width: 5px;">STT</th>
+
+                            <th class="text-center py-3 px-2" style="min-width: 100px;">TÊN MÓN ĂN</th>
+                            <th class="text-right py-3 px-4" style="width: 100px;">SỐ LƯỢNG</th>
+                            <th class="text-center py-3 px-4" style="width: 100px;">ĐƠN GIÁ</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int i = 1;
+                        }
+
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                <td class="text-center font-weight-semibold align-middle px-0">@i</td>
+
+                                <td class="text-left font-weight-semibold align-middle p-4">@item.TENMONAN</td>
+                                <td class="text-left font-weight-semibold align-middle p-4">@item.SOLUONG</td>
+                                <td class="text-left font-weight-semibold align-middle p-4">@String.Format("{0:0,0}", item.DONGIA)</td>
+                            </tr>
+                            i++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <p>
+            <a href="@Url.Action("DanhSachDH", "DonHang")" class="btn btn-primary">Trở về</a>
+        </p>
+    </div>
+</div>
+
+

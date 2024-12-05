@@ -1,0 +1,99 @@
+﻿@model IEnumerable<NhaHang_Web.Models.SapXepMenu_Result>
+
+@{
+    ViewBag.Title = "XemSanPhamTheoLocAdmin";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+<br /><hr />
+<h2 style="color: blue; text-align: center; font-weight: bold">DANH SÁCH MENU</h2>
+
+<div class="col-8">
+    @using (Html.BeginForm("XemSanPhamTheoLocAdmin", "SanPham", FormMethod.Get))
+    {
+        <div class="col-3">
+            <label for="giaMin">Giá Min: <span><input type="number" id="giaMin" name="giaMin"></span></label>
+        </div>
+
+        <div class="col-3">
+            <label for="giaMin">Giá Max: <span><input type="number" id="giaMax" name="giaMax"></span></label>
+        </div>
+        <br />
+        <div class="col-6">
+            @Html.DropDownList("sapXep", new SelectList(new[]
+            {
+                new SelectListItem { Text = "Tăng dần theo tên", Value = "ASC_MON" },
+                new SelectListItem { Text = "Giảm dần theo tên", Value = "DESC_MON" },
+                new SelectListItem { Text = "Tăng dần theo giá", Value = "ASC_GIA" },
+                new SelectListItem { Text = "Giảm dần theo giá", Value = "DESC_GIA" }
+            }, "Value", "Text", ViewBag.SapXep))
+            <input type="submit" value="Sắp xếp" class="btn btn-outline-warning" />
+        </div>
+    }
+</div>
+<br />
+<table class="table table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th></th>
+            <th>MÃ MÓN</th>
+            <th>TÊN MÓN</th>
+            <th>GIÁ</th>
+            <th>MÔ TẢ</th>
+            <th>HÌNH ẢNH</th>
+            <th>MÃ LOẠI</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td width="3%"><input class="checkbox-inline" type="checkbox" value="" /></td>
+            <td width="10%">@item.MAMONAN</td>
+            <td width="15%">@item.TENMONAN</td>
+            <td style="color: red" width="12%">@String.Format("{0:0,0}", item.GIA)VNĐ</td>
+            <td width="25%">@item.MOTA</td>
+            <td width="12%"><img src="~/ImageMenu/@item.HINHANH" width="100px" />  </td>
+            <td width="8%">@item.MALOAI</td>
+            <td width="15%">
+                <button class="btn btn-warning"> <a href="~/Admin/SanPham/Create"><i style="color: white" class="fa-solid fa-plus"></i></a></button>
+                <button class="btn btn-danger"> <a href="~/Admin/SanPham/Edit?id=@item.MAMONAN"><i style="color: white" class="fa-solid fa-pen-to-square"></i></a></button>
+                <!-- Replace 'YourController' with the actual controller name -->
+                <button class="delete-btn btn btn-primary" data-product-id="@item.MAMONAN"><i style="color: white" class="fa-solid fa-trash"></i></button>
+
+            </td>
+        </tr>
+    }
+</table>
+<!-- Include jQuery if not already included -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.delete-btn').on('click', function () {
+            // Get the product ID from the data attribute
+            var productId = $(this).data('product-id');
+
+            // Send an Ajax request to delete the product
+            $.ajax({
+                url: '@Url.Action("Delete", "SanPham", new { area = "Admin" })',
+                type: 'POST',
+                data: { id: productId },
+                success: function (result) {
+                    if (result.success) {
+                        // Update the UI or perform other actions on success
+                        location.reload();
+                        alert(result.message);
+                    } else {
+                        // Handle errors or display a message
+                        alert(result.message);
+                    }
+                },
+                error: function () {
+                    // Handle Ajax errors
+                    alert('Error occurred during the Ajax request.');
+                }
+            });
+        });
+    });
+</script>

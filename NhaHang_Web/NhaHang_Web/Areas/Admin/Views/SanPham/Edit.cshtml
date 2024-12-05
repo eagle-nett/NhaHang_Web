@@ -1,0 +1,79 @@
+﻿@model NhaHang_Web.Models.MONAN
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<br />
+<h2 style="text-align: center; color: blue; font-weight: bold" class="text-body">SỬA VÀO DANH SÁCH MÓN ĂN</h2>
+
+@using (Html.BeginForm("Edit", "SanPham", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <button class="btn btn-primary">SỬA MÓN ĂN</button>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">MÃ MÓN ĂN</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MAMONAN, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MAMONAN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">TÊN MÓN ĂN</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TENMONAN, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TENMONAN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">GIÁ MÓN ĂN</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GIA, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GIA, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">MÔ TẢ</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MOTA, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MOTA, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">HÌNH ẢNH</label>
+            <div class="col-md-6">
+                <input type="file" name="imageFile">
+            </div>
+        </div>
+
+
+        <!--Category-->
+        <div class="form-group">
+            <label class="control-label col-md-2">MÃ LOẠI</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.MALOAI, null, "- Chọn Loại Món Ăn -", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MALOAI, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-danger" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <button class="btn btn-warning"> <a style="color: black; text-decoration: none" href="~/Admin/SanPham/XemSanPhamTheoLocAdmin"><span style="color: black; text-decoration: none">Quay lại trang trước</span></a></button>
+</div>
+

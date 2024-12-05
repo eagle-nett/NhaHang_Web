@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<link href="~/Content/SignUp.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a class="text-body" href="~/Home/Home">Trang chủ</a></li>
+                <li class="breadcrumb-item text-dark active" aria-current="page">Đăng nhập</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+@{ var falg = true;}
+<div id="tab-1" class="tab-pane fade show p-0 @(falg ? "active" : "")">
+
+    <div class="container">
+        
+        
+        <div class="card bg-light">
+            <h4 class="card bg-secondary card-header text-center clearfix text-white">ĐĂNG NHẬP TÀI KHOẢN</h4>
+            <article class="card-body mx-auto" style="max-width: 400px;">
+
+
+                @using (Html.BeginForm())
+                {
+                    @Html.ValidationSummary(true)
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input name="TAIKHOAN" class="form-control" placeholder="Tên đăng nhập" type="text" value="@((Model?.TAIKHOAN) ?? null)">
+                    </div> <!-- form-group end.// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input name="MATKHAU" class="form-control" placeholder="Mật khẩu" type="text" value="@((Model?.MATKHAU) ?? null)">
+                    </div> <!-- form-group// -->
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Đăng nhập  </button>
+                    </div> <!-- form-group// -->
+                    <p class="text-center">Bạn chưa có tài khoản? <a href="~/Account/DangKy">Đăng ký</a> </p>
+
+
+
+
+                }
+
+            </article>
+        </div> <!-- card.// -->
+
+    </div>
+</div>

@@ -1,0 +1,60 @@
+﻿@using NhaHang_Web.Models;
+@{
+    ViewBag.Title = "XemChiTiet";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+@model List<MONAN>
+
+<div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <h1 class="display-3 mb-3 animated slideInDown">Menu</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a class="text-body" href="~/Home/Home">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a class="text-body" href="~/Menu/MenuLoaiMonAn">Menu</a></li>
+                <li class="breadcrumb-item text-dark active" aria-current="page">Xem chi tiết</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<br />
+<h2 class="text-body" style="text-align: center; color: aqua">CHI TIẾT SẢN PHẨM</h2>
+<hr />
+<div class="container text-body">
+    <div class="container-fluid">
+        <div class="row">
+            @{
+                foreach (var item in Model)
+                {
+                    <div class="col-5">
+                        <img width="80%" height="80%" src="~/ImageMenu/@item.HINHANH" />
+                    </div>
+                }
+            }
+            @{
+                foreach (var item in Model)
+                {
+                    <div class="col-7">
+                        <table class="table" style="font-size: 1em">
+                            <tr>
+                                <td>Tên món ăn: </td>
+                                <td style="color:red">@item.TENMONAN</td>
+                            </tr>
+                            <tr>
+                                <td>Giá: </td>
+                                <td style="color:red">@string.Format("{0:0,0}", item.GIA)VNĐ</td>
+                            </tr>
+                            <tr>
+                                <td>Mô tả món ăn: </td>
+                                <td style="color:red">@item.MOTA</td>
+                            </tr>
+                        </table>
+
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+
